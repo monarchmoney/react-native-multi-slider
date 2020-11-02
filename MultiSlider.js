@@ -408,7 +408,7 @@ export default class MultiSlider extends React.Component {
       ? unselectedStyle
       : selectedStyle || styles.selectedTrack;
     const trackThreeLength = twoMarkers ? sliderLength - positionTwo : 0;
-    const trackThreeStyle = unselectedStyle;
+    const trackThreeStyle = this.props.trackThreeStyle || unselectedStyle;
     const trackTwoLength = sliderLength - trackOneLength - trackThreeLength;
     const trackTwoStyle = twoMarkers
       ? selectedStyle || styles.selectedTrack

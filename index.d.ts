@@ -58,6 +58,7 @@ export interface MultiSliderProps {
 
     containerStyle?: ViewStyle;
     trackStyle?: ViewStyle;
+    trackThreeStyle?: ViewStyle;
     selectedStyle?: ViewStyle;
     unselectedStyle?: ViewStyle;
     markerContainerStyle?: ViewStyle;
