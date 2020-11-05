@@ -454,33 +454,35 @@ export default class MultiSlider extends React.Component {
     const body = (
       <React.Fragment>
         <View style={[styles.fullTrack, { width: sliderLength }]}>
-          <View
-            style={[
-              styles.track,
-              this.props.trackStyle,
-              trackOneStyle,
-              { width: trackOneLength },
-            ]}
-          />
-          <View
-            style={[
-              styles.track,
-              this.props.trackStyle,
-              trackTwoStyle,
-              { width: trackTwoLength },
-            ]}
-            {...(twoMarkers ? this._panResponderBetween.panHandlers : {})}
-          />
-          {twoMarkers && (
+          <View style={[styles.trackContainer, this.props.trackContainerStyle]}>
             <View
               style={[
                 styles.track,
                 this.props.trackStyle,
-                trackThreeStyle,
-                { width: trackThreeLength },
+                trackOneStyle,
+                { width: trackOneLength },
               ]}
             />
-          )}
+            <View
+              style={[
+                styles.track,
+                this.props.trackStyle,
+                trackTwoStyle,
+                { width: trackTwoLength },
+              ]}
+              {...(twoMarkers ? this._panResponderBetween.panHandlers : {})}
+            />
+            {twoMarkers && (
+              <View
+                style={[
+                  styles.track,
+                  this.props.trackStyle,
+                  trackThreeStyle,
+                  { width: trackThreeLength },
+                ]}
+              />
+            )}
+          </View>
           <View
             style={[
               styles.markerContainer,
@@ -600,6 +602,9 @@ const styles = StyleSheet.create({
   },
   fullTrack: {
     flexDirection: 'row',
+  },
+  trackContainer: {
+
   },
   track: {
     ...Platform.select({
