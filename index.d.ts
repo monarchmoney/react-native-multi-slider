@@ -57,6 +57,7 @@ export interface MultiSliderProps {
     optionsArray?: number[];
 
     containerStyle?: ViewStyle;
+    trackContainerStyle?: ViewStyle;
     trackStyle?: ViewStyle;
     trackThreeStyle?: ViewStyle;
     selectedStyle?: ViewStyle;
