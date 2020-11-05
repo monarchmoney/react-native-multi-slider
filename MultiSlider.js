@@ -53,8 +53,13 @@ export default class MultiSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    if(this.props.minMarkerOverlapDistance > 0 && this.props.minMarkerOverlapStepDistance > 0) {
-      console.error('You should provide either "minMarkerOverlapDistance" or "minMarkerOverlapStepDistance", not both. Expect unreliable results.');
+    if (
+      this.props.minMarkerOverlapDistance > 0 &&
+      this.props.minMarkerOverlapStepDistance > 0
+    ) {
+      console.error(
+        'You should provide either "minMarkerOverlapDistance" or "minMarkerOverlapStepDistance", not both. Expect unreliable results.',
+      );
     }
 
     this.optionsArray =
@@ -444,6 +449,10 @@ export default class MultiSlider extends React.Component {
     };
 
     const containerStyle = [styles.container, this.props.containerStyle];
+    const trackContainerStyle = [
+      styles.trackContainer,
+      this.props.trackContainerStyle,
+    ];
 
     if (this.props.vertical) {
       containerStyle.push({
@@ -454,7 +463,7 @@ export default class MultiSlider extends React.Component {
     const body = (
       <React.Fragment>
         <View style={[styles.fullTrack, { width: sliderLength }]}>
-          <View style={[styles.trackContainer, this.props.trackContainerStyle]}>
+          <View style={trackContainerStyle}>
             <View
               style={[
                 styles.track,
@@ -604,7 +613,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   trackContainer: {
-
+    flexDirection: 'row',
   },
   track: {
     ...Platform.select({
