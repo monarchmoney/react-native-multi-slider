@@ -69,6 +69,8 @@ export interface MultiSliderProps {
     valueSuffix?: string;
     enabledOne?: boolean;
     enabledTwo?: boolean;
+    hideMarkerOne?: boolean;
+    hideMarkerTwo?: boolean;
     onToggleOne?: () => void;
     onToggleTwo?: () => void;
     allowOverlap?: boolean;

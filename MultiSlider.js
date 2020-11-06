@@ -405,6 +405,8 @@ export default class MultiSlider extends React.Component {
       sliderLength,
       markerOffsetX,
       markerOffsetY,
+      hideMarkerOne,
+      hideMarkerTwo,
     } = this.props;
     const twoMarkers = this.props.values.length == 2; // when allowOverlap, positionTwo could be 0, identified as string '0' and throwing 'RawText 0 needs to be wrapped in <Text>' error
 
@@ -492,76 +494,39 @@ export default class MultiSlider extends React.Component {
               />
             )}
           </View>
-          <View
-            style={[
-              styles.markerContainer,
-              markerContainerOne,
-              this.props.markerContainerStyle,
-              positionOne > sliderLength / 2 && styles.topMarkerContainer,
-            ]}
-          >
-            <View
-              style={[styles.touch, touchStyle]}
-              ref={component => (this._markerOne = component)}
-              {...this._panResponderOne.panHandlers}
-            >
-              {isMarkersSeparated === false ? (
-                <Marker
-                  enabled={this.props.enabledOne}
-                  pressed={this.state.onePressed}
-                  markerStyle={this.props.markerStyle}
-                  pressedMarkerStyle={this.props.pressedMarkerStyle}
-                  disabledMarkerStyle={this.props.disabledMarkerStyle}
-                  currentValue={this.state.valueOne}
-                  valuePrefix={this.props.valuePrefix}
-                  valueSuffix={this.props.valueSuffix}
-                />
-              ) : (
-                <MarkerLeft
-                  enabled={this.props.enabledOne}
-                  pressed={this.state.onePressed}
-                  markerStyle={this.props.markerStyle}
-                  pressedMarkerStyle={this.props.pressedMarkerStyle}
-                  disabledMarkerStyle={this.props.disabledMarkerStyle}
-                  currentValue={this.state.valueOne}
-                  valuePrefix={this.props.valuePrefix}
-                  valueSuffix={this.props.valueSuffix}
-                />
-              )}
-            </View>
-          </View>
-          {twoMarkers && positionOne !== this.props.sliderLength && (
+          {!hideMarkerOne && (
             <View
               style={[
                 styles.markerContainer,
-                markerContainerTwo,
+                markerContainerOne,
                 this.props.markerContainerStyle,
+                positionOne > sliderLength / 2 && styles.topMarkerContainer,
               ]}
             >
               <View
                 style={[styles.touch, touchStyle]}
-                ref={component => (this._markerTwo = component)}
-                {...this._panResponderTwo.panHandlers}
+                ref={component => (this._markerOne = component)}
+                {...this._panResponderOne.panHandlers}
               >
                 {isMarkersSeparated === false ? (
                   <Marker
-                    pressed={this.state.twoPressed}
+                    enabled={this.props.enabledOne}
+                    pressed={this.state.onePressed}
                     markerStyle={this.props.markerStyle}
                     pressedMarkerStyle={this.props.pressedMarkerStyle}
                     disabledMarkerStyle={this.props.disabledMarkerStyle}
-                    currentValue={this.state.valueTwo}
-                    enabled={this.props.enabledTwo}
+                    currentValue={this.state.valueOne}
                     valuePrefix={this.props.valuePrefix}
                     valueSuffix={this.props.valueSuffix}
                   />
                 ) : (
-                  <MarkerRight
-                    pressed={this.state.twoPressed}
+                  <MarkerLeft
+                    enabled={this.props.enabledOne}
+                    pressed={this.state.onePressed}
                     markerStyle={this.props.markerStyle}
                     pressedMarkerStyle={this.props.pressedMarkerStyle}
                     disabledMarkerStyle={this.props.disabledMarkerStyle}
-                    currentValue={this.state.valueTwo}
-                    enabled={this.props.enabledTwo}
+                    currentValue={this.state.valueOne}
                     valuePrefix={this.props.valuePrefix}
                     valueSuffix={this.props.valueSuffix}
                   />
@@ -569,6 +534,47 @@ export default class MultiSlider extends React.Component {
               </View>
             </View>
           )}
+          {twoMarkers &&
+            !hideMarkerTwo &&
+            positionOne !== this.props.sliderLength && (
+              <View
+                style={[
+                  styles.markerContainer,
+                  markerContainerTwo,
+                  this.props.markerContainerStyle,
+                ]}
+              >
+                <View
+                  style={[styles.touch, touchStyle]}
+                  ref={component => (this._markerTwo = component)}
+                  {...this._panResponderTwo.panHandlers}
+                >
+                  {isMarkersSeparated === false ? (
+                    <Marker
+                      pressed={this.state.twoPressed}
+                      markerStyle={this.props.markerStyle}
+                      pressedMarkerStyle={this.props.pressedMarkerStyle}
+                      disabledMarkerStyle={this.props.disabledMarkerStyle}
+                      currentValue={this.state.valueTwo}
+                      enabled={this.props.enabledTwo}
+                      valuePrefix={this.props.valuePrefix}
+                      valueSuffix={this.props.valueSuffix}
+                    />
+                  ) : (
+                    <MarkerRight
+                      pressed={this.state.twoPressed}
+                      markerStyle={this.props.markerStyle}
+                      pressedMarkerStyle={this.props.pressedMarkerStyle}
+                      disabledMarkerStyle={this.props.disabledMarkerStyle}
+                      currentValue={this.state.valueTwo}
+                      enabled={this.props.enabledTwo}
+                      valuePrefix={this.props.valuePrefix}
+                      valueSuffix={this.props.valueSuffix}
+                    />
+                  )}
+                </View>
+              </View>
+            )}
         </View>
       </React.Fragment>
     );
